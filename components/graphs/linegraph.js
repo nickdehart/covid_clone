@@ -40,11 +40,20 @@ export default function () {
     },
   ];
 
+  const formatTicks = (item) => {
+    let length = Number(item).toString().length;
+    if (length > 12) return `${item / 1000000000000}T`;
+    else if (length > 9) return `${item / 1000000000}B`;
+    else if (length > 6) return `${item / 1000000}M`;
+    else if (length > 3) return `${item / 1000}K`;
+    else return item;
+  };
+
   return (
     <ResponsiveContainer>
       <LineChart data={data}>
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis tickFormatter={formatTicks} />
         <Tooltip />
         <Line
           type="monotone"

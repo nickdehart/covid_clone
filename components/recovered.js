@@ -1,26 +1,21 @@
-const countries = ({ data, geolocate }) => {
-  // console.log(data);
+const countries = ({ data }) => {
   let sorted = data.sort((a, b) =>
-    a.TotalConfirmed < b.TotalConfirmed
+    a.TotalRecovered < b.TotalRecovered
       ? 1
-      : b.TotalConfirmed < a.TotalConfirmed
+      : b.TotalRecovered < a.TotalRecovered
       ? -1
       : 0
   );
-  // console.log(sorted);
   return (
     <table className="table table-dark">
       <tbody>
         {sorted.map((item, index) => {
           return (
-            item.TotalConfirmed > 1000 && (
-              <tr
-                key={`row-${index}`}
-                onClick={() => geolocate(item.CountryCode)}
-              >
+            item.TotalRecovered > 1000 && (
+              <tr key={`row-${index}`}>
                 <td>
-                  <p className="red">
-                    <b>{item.TotalConfirmed.toLocaleString()}</b>
+                  <p className="green">
+                    <b>{item.TotalRecovered.toLocaleString()}</b>
                   </p>
                   <p className="gray">{item.Country}</p>
                 </td>
@@ -30,17 +25,14 @@ const countries = ({ data, geolocate }) => {
         })}
       </tbody>
       <style jsx>{`
-        .red {
-          color: red;
+        .green {
+          color: green;
         }
         .gray {
           color: #bdbdbd;
         }
         p {
           margin: 0px;
-        }
-        tr::hover {
-          cursor: pointer;
         }
       `}</style>
     </table>

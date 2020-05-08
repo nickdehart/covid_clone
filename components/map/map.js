@@ -1,16 +1,6 @@
 // import L from "leaflet";
 import Head from "next/head";
-import {
-  Circle,
-  CircleMarker,
-  Map,
-  // Marker,
-  Polygon,
-  Popup,
-  Rectangle,
-  TileLayer,
-  Tooltip,
-} from "react-leaflet";
+import { CircleMarker, Map, TileLayer, Tooltip } from "react-leaflet";
 import "./map.css";
 
 const Mp = ({ coords }) => {
@@ -18,27 +8,6 @@ const Mp = ({ coords }) => {
     coords.lat ? coords.lat : 51.505,
     coords.lon ? coords.lon : -0.09,
   ];
-
-  const multiPolygon = [
-    [
-      [51.51, -0.12],
-      [51.51, -0.13],
-      [51.53, -0.13],
-    ],
-    [
-      [51.51, -0.05],
-      [51.51, -0.07],
-      [51.53, -0.07],
-    ],
-  ];
-
-  const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-  ];
-
-  const [count, setCount] = React.useState(0);
-  const clickedText = `Circle click: ${count}`;
 
   return (
     <>
@@ -54,34 +23,12 @@ const Mp = ({ coords }) => {
       {/* <Map center={[21.3, -157.9]} zoom={12}> */}
       <Map center={center} zoom={5}>
         <TileLayer
-          // attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-          // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Circle
-          center={center}
-          fillColor="blue"
-          onClick={() => setCount(count + 1)}
-          radius={200}
-        >
-          <Tooltip>{clickedText}</Tooltip>
-        </Circle>
-        <CircleMarker center={[51.51, -0.12]} color="red" radius={20}>
+        <CircleMarker center={center} color="red" radius={25} stroke={0}>
           <Tooltip>Tooltip for CircleMarker</Tooltip>
         </CircleMarker>
-        {/* <Marker position={[51.51, -0.09]}>
-          <Popup>Popup for Marker</Popup>
-          <Tooltip>Tooltip for Marker</Tooltip>
-        </Marker> */}
-        <Polygon color="purple" positions={multiPolygon}>
-          <Tooltip sticky>sticky Tooltip for Polygon</Tooltip>
-        </Polygon>
-        <Rectangle bounds={rectangle} color="black">
-          <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
-            permanent Tooltip for Rectangle
-          </Tooltip>
-        </Rectangle>
       </Map>
     </>
   );

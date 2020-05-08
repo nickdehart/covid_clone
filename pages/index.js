@@ -5,7 +5,10 @@ import "./index.css";
 import Title from "../components/title";
 import Graphs from "../components/graphs";
 import Countries from "../components/countries";
+import Deaths from "../components/deaths";
+import Recovered from "../components/recovered";
 
+// Map uses "window", so it cannot be server side rendered
 const Map = dynamic(() => import("../components/map"), { ssr: false });
 
 const Home = () => {
@@ -16,7 +19,7 @@ const Home = () => {
     axios
       .get("https://api.covid19api.com/summary")
       .then(function (response) {
-        // console.log(response.data);
+        console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
@@ -30,7 +33,6 @@ const Home = () => {
         `https://nominatim.openstreetmap.org/?country=${country}&format=json`
       )
       .then((response) => {
-        console.log({ lat: response.data[0].lat, lon: response.data[0].lon });
         setCoords({ lat: response.data[0].lat, lon: response.data[0].lon });
       })
       .catch(function (error) {
@@ -61,7 +63,7 @@ const Home = () => {
                 data.Global.TotalConfirmed.toLocaleString()}
             </h1>
           </div>
-          <div className="left-middle">
+          <div className="left-middle scroll">
             {data && data.Countries && (
               <Countries data={data.Countries} geolocate={geolocate} />
             )}
@@ -74,25 +76,27 @@ const Home = () => {
               </a>
             </p>
             <p className="attribution">
-              Last Updated: {new Date().toLocaleString()}
+              Last Updated: {new Date(data.Date).toLocaleString()}
             </p>
           </div>
           <div className="map-container">
             <Map coords={coords} />
           </div>
-          <div className="right-upper">
+          <div className="right-upper scroll">
             <h5>Total Deaths:</h5>
             <h1 className="red">
               {data && data.Global && data.Global.TotalDeaths.toLocaleString()}
             </h1>
+            {data && data.Countries && <Deaths data={data.Countries} />}
           </div>
-          <div className="right-upper-2">
+          <div className="right-upper-2 scroll">
             <h5>Total Recovered:</h5>
             <h1 className="green">
               {data &&
                 data.Global &&
                 data.Global.TotalRecovered.toLocaleString()}
             </h1>
+            {data && data.Countries && <Recovered data={data.Countries} />}
           </div>
           <div className="right-lower">
             <Graphs />
