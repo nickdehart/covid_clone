@@ -20,17 +20,6 @@ const countries = ({ data }) => {
           );
         })}
       </tbody>
-      <style jsx>{`
-        .red {
-          color: red;
-        }
-        .gray {
-          color: #bdbdbd;
-        }
-        p {
-          margin: 0px;
-        }
-      `}</style>
     </table>
   );
 };

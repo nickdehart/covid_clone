@@ -24,17 +24,6 @@ const countries = ({ data }) => {
           );
         })}
       </tbody>
-      <style jsx>{`
-        .green {
-          color: green;
-        }
-        .gray {
-          color: #bdbdbd;
-        }
-        p {
-          margin: 0px;
-        }
-      `}</style>
     </table>
   );
 };

@@ -29,20 +29,6 @@ const countries = ({ data, geolocate }) => {
           );
         })}
       </tbody>
-      <style jsx>{`
-        .red {
-          color: red;
-        }
-        .gray {
-          color: #bdbdbd;
-        }
-        p {
-          margin: 0px;
-        }
-        tr::hover {
-          cursor: pointer;
-        }
-      `}</style>
     </table>
   );
 };

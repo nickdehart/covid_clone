@@ -2,7 +2,6 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import "./index.css";
-import Title from "../components/title";
 import Graphs from "../components/graphs";
 import Countries from "../components/countries";
 import Deaths from "../components/deaths";
@@ -52,45 +51,47 @@ const Home = () => {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      <Title title="COVID-19 Dashboard" />
+      <header className="bg gray">
+        <h3>COVID-19 Dashboard</h3>
+      </header>
       <div className="content-container">
         <div className="grid-container">
-          <div className="left-upper">
-            <h5>Total Confirmed:</h5>
+          <div className="left-upper bg flex-column-center justify-start">
+            <h5 className="gray">Total Confirmed:</h5>
             <h1 className="red">
               {data &&
                 data.Global &&
                 data.Global.TotalConfirmed.toLocaleString()}
             </h1>
           </div>
-          <div className="left-middle scroll">
+          <div className="left-middle bg scroll">
             {data && data.Countries && (
               <Countries data={data.Countries} geolocate={geolocate} />
             )}
           </div>
-          <div className="left-lower">
-            <p className="attribution">
+          <div className="left-lower bg flex-column-center justify-center">
+            <p className="attribution gray">
               Data Source:{" "}
               <a href="https://covid19api.com/" target="_blank">
                 https://covid19api.com/
               </a>
             </p>
-            <p className="attribution">
+            <p className="attribution gray">
               Last Updated: {new Date(data.Date).toLocaleString()}
             </p>
           </div>
-          <div className="map-container">
+          <div className="map-container bg">
             <Map coords={coords} />
           </div>
-          <div className="right-upper scroll">
-            <h5>Total Deaths:</h5>
+          <div className="right-upper bg scroll flex-column-center justify-start">
+            <h5 className="gray">Total Deaths:</h5>
             <h1 className="red">
               {data && data.Global && data.Global.TotalDeaths.toLocaleString()}
             </h1>
             {data && data.Countries && <Deaths data={data.Countries} />}
           </div>
-          <div className="right-upper-2 scroll">
-            <h5>Total Recovered:</h5>
+          <div className="right-upper-2 bg scroll flex-column-center justify-start">
+            <h5 className="gray">Total Recovered:</h5>
             <h1 className="green">
               {data &&
                 data.Global &&
@@ -98,7 +99,7 @@ const Home = () => {
             </h1>
             {data && data.Countries && <Recovered data={data.Countries} />}
           </div>
-          <div className="right-lower">
+          <div className="right-lower bg">
             <Graphs />
           </div>
         </div>
