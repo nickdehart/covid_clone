@@ -2,7 +2,8 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import "./index.css";
-import Graphs from "../components/graphs";
+import "./map.css";
+import Linegraph from "../components/linegraph";
 import Countries from "../components/countries";
 import Deaths from "../components/deaths";
 import Recovered from "../components/recovered";
@@ -18,7 +19,7 @@ const Home = () => {
     axios
       .get("https://api.covid19api.com/summary")
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
@@ -100,7 +101,7 @@ const Home = () => {
             {data && data.Countries && <Recovered data={data.Countries} />}
           </div>
           <div className="right-lower bg">
-            <Graphs />
+            <Linegraph />
           </div>
         </div>
       </div>

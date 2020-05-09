@@ -1,5 +1,4 @@
 const countries = ({ data, geolocate }) => {
-  // console.log(data);
   let sorted = data.sort((a, b) =>
     a.TotalConfirmed < b.TotalConfirmed
       ? 1
@@ -7,7 +6,6 @@ const countries = ({ data, geolocate }) => {
       ? -1
       : 0
   );
-  // console.log(sorted);
   return (
     <table className="table table-dark">
       <tbody>

@@ -1,7 +1,5 @@
-// import L from "leaflet";
 import Head from "next/head";
 import { CircleMarker, Map, TileLayer, Tooltip } from "react-leaflet";
-import "./map.css";
 
 const Mp = ({ coords }) => {
   const center = [
