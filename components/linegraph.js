@@ -12,32 +12,32 @@ export default function () {
   const data = [
     {
       name: "Jan",
-      pv: 2400,
+      cases: 500,
     },
     {
       name: "Feb",
-      pv: 6000,
+      cases: 12000,
     },
     {
       name: "Mar",
-      pv: 9800,
+      cases: 88000,
     },
     {
       name: "Apr",
-      pv: 15000,
+      cases: 932000,
     },
     {
       name: "May",
-      pv: 17000,
+      cases: 3344000,
     },
-    {
-      name: "Jun",
-      pv: 20000,
-    },
-    {
-      name: "Jul",
-      pv: 23000,
-    },
+    // {
+    //   name: "Jun",
+    //   cases: 20000,
+    // },
+    // {
+    //   name: "Jul",
+    //   cases: 23000,
+    // },
   ];
 
   const formatTicks = (item) => {
@@ -57,9 +57,9 @@ export default function () {
         <Tooltip />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="cases"
           stroke="#ffaa00"
-          strokeWidth={4}
+          strokeWidth={5}
           dot={false}
         />
       </LineChart>
