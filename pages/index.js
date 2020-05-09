@@ -1,8 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import "./index.css";
-import "./map.css";
 import Linegraph from "../components/linegraph";
 import Countries from "../components/countries";
 import Deaths from "../components/deaths";
@@ -45,6 +43,7 @@ const Home = () => {
       <Head>
         <title>Coronavirus COVID-19 (2019-nCoV)</title>
         <link rel="icon" href="/favicon2.ico" />
+        {/* all this bootstrap for just a few tables */}
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
